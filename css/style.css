@@ -1,0 +1,41 @@
+/* Proprietà generali */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: black;
+}
+ul{
+    list-style-type: none;
+}
+
+/* Porprietà main */
+main{
+    min-height: 100vh;
+    color: white;
+    padding: 40px 10%;
+}
+main section:first-child{
+    margin-bottom: 20px;
+}
+
+.cover{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -20px;
+}
+.cover li{
+    background-color: lightgray;
+    flex-basis: 300px;
+    height: 400px;
+    padding: 20px;
+    margin: 0 20px 40px;
+    border-radius: 20px;
+    text-align: center;
+}
+.cover li img{
+    width: 100%;
+    margin-top: 20px;
+}
