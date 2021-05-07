@@ -8,17 +8,21 @@ function init() {
             selectedFilter: ''
         },
         mounted: function () {
-            this.albumsCollection();
+            this.filteredCollection();
         },
         methods:{
-            // Funzione creazione album iniziale
-            albumsCollection: function () {
-                axios.get('../data.php')
+            // Funzione filtro album / creazione album iniziale
+            filteredCollection: function() {
+                axios.get('../data.php',
+                {
+                    params: {
+                        filter: this.selectedFilter
+                    }
+                })
                 .then(data => {
-                    
                     this.filteredAlbums = data.data;
-                    console.log(this.filteredAlbums);
-                    
+                    console.log('Album filtrati: ' , this.filteredAlbums);
+
                     // Se non ho ancora i generi
                     if(this.genreList.length == 0){
                         this.getGenreList();
@@ -26,8 +30,8 @@ function init() {
                 })
                 .catch(() => {
                     console.log('Error');
-                })
-                ; 
+                });
+                console.log('Filtro: ', this.selectedFilter);
             },
             // Funzione per aquisire tutti i generi
             getGenreList: function () {
@@ -39,24 +43,6 @@ function init() {
                 }
                 console.log(this.genreList);
             },
-            // Funzione filtro album
-            filteredCollection: function() {
-                
-                axios.get('../data.php',
-                {
-                    params: {
-                        filter: this.selectedFilter
-                    }
-                })
-                .then(data => {
-                    this.filteredAlbums = data.data;
-                    console.log('Album filtrati: ' , this.filteredAlbums);
-                })
-                .catch(() => {
-                    console.log('Error');
-                });
-                console.log('Filtro: ', this.selectedFilter);
-            }
         }
     });
 }
